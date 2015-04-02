@@ -1,0 +1,63 @@
+<!-- simple-todos.html -->
+<head>
+	<title>Budafony chat</title>
+</head>
+
+<body>
+	<div class="container">
+		<header>
+			<h1>Budafony Chat</h1>
+
+			{{> loginButtons}}
+
+			<form id="new-message" class="new-message">
+				<input id="message" type="text" name="text" placeholder="Type new message here">
+				<input id="target" type="text" name="target" placeholder="Type your target here">
+				<input type="submit">
+			</form>
+
+		</header>
+
+		<ul>
+			{{#each messages}}
+			{{> message}}
+			{{/each}}
+		</ul>
+
+		<ul>
+			{{#each answers}}
+			{{> answer}}
+			{{/each}}
+		</ul>
+
+		
+	</div>
+</body>
+
+<template name="message">
+	<li>
+		<button class="delete">&times;</button>
+		
+		{{#if isOwner}}
+
+		<span class="text"> to <strong>{{target}}</strong> - {{text}}</span>
+
+		{{else}}
+
+		<span class="text"> from <strong>{{owner_username}}</strong> - {{text}} </span>
+
+		{{/if}}
+
+		<form class="new-answer">
+			<input type="text" class="answer" placeholder="Type your answer here" name="answer">
+			<input type="submit">
+		</form>
+		
+	</li>
+</template>
+
+<template name="answer">
+	<li>
+		<span class="text"> to <strong>{{target}}</strong> - {{text}}</span>
+	</li>
+</template>
